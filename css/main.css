@@ -1,0 +1,113 @@
+@import url('fonts.css');
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Roboto-Regular;
+}
+
+nav {
+    color: #999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/** HEADER **/
+
+header {
+    height: 100px;
+    background: #222;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 100%;
+    padding: 20px;
+}
+
+header img {
+    height: 100%;
+}
+
+.logout {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    text-decoration: none;
+}
+
+.logout div {
+    color: #666;
+    font-size: 24px;
+}
+
+.logout div i {
+    margin-right: 10px;
+}
+
+.logout:hover div {
+    color: #fff;
+}
+
+.logout:hover {
+    background: #000;
+}
+
+/** MENU **/
+
+.menu {
+    background: #222;
+    height: 100%;
+    width: 250px;
+    font-size: 24px;
+}
+
+.menu ul li {
+    padding: 15px;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+
+.menu ul li a {
+    color: #666;
+    text-decoration: none;
+}
+
+.menu ul li a i {
+    margin-right: 20px;
+}
+
+.menu ul li:hover {
+    background: #000;
+}
+
+.menu ul li:hover a {
+    color: #fff;
+}
+
+/** WRAPPED CONTENT **/
+
+.wrapped-content {
+    padding: 150px 0 0 300px;
+}
