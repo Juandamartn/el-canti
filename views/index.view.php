@@ -16,7 +16,7 @@
                     <img src="img/cantinflas-logo.png" alt="Antojitos 'El Cantinflas'">
                 </div>
 
-                <a href="#" class="logout" id="logout">
+                <a href="php/logout.php" class="logout" id="logout">
                     <div>
                         <i class="fas fa-sign-out-alt"></i>Cerrar sesión
                     </div>
@@ -25,39 +25,39 @@
 
             <div class="menu" id="menu">
                 <ul>
-                    <li>
-                        <a href="#">
+                    <a href="#">
+                        <li>
                             <i class="fas fa-home"></i> Inicio
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">
+                        </li>
+                    </a>
+
+                    <a href="#">
+                        <li>
                             <i class="fas fa-shopping-cart"></i> Ventas
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">
+                        </li>
+                    </a>
+
+                    <a href="#">
+                        <li>
                             <i class="fas fa-utensils"></i> Alimentos
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">
+                        </li>
+                    </a>
+
+                    <a href="#">
+                        <li>
                             <i class="fas fa-chart-line"></i> Reportes
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">
+                        </li>
+                    </a>
+
+                    <a href="#">
+                        <li>
                             <i class="fas fa-users"></i> Usuarios
-                        </a>
-                    </li>
+                        </li>
+                    </a>
                 </ul>
             </div>
         </nav>
-        
+
         <div class="wrapped-content" id="wrapped-content"></div>
     </div>
 </body>
