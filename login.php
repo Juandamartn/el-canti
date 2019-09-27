@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if ($result !== false) {
         $_SESSION['user'] = $result['id_user'];
-        header('Location: index.php');
+        header('Location: index.php?view=home');
     } else {
         $errors .= '<li><i class="fas fa-times"></i>Usuario o contraseña incorrectos</li>';
     }

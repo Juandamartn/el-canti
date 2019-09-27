@@ -25,31 +25,31 @@
 
             <div class="menu" id="menu">
                 <ul>
-                    <a href="#">
+                    <a href="index.php?view=home">
                         <li>
                             <i class="fas fa-home"></i> Inicio
                         </li>
                     </a>
 
-                    <a href="#">
+                    <a href="index.php?view=sales">
                         <li>
                             <i class="fas fa-shopping-cart"></i> Ventas
                         </li>
                     </a>
 
-                    <a href="#">
+                    <a href="index.php?view=food">
                         <li>
                             <i class="fas fa-utensils"></i> Alimentos
                         </li>
                     </a>
 
-                    <a href="#">
+                    <a href="index.php?view=reports">
                         <li>
                             <i class="fas fa-chart-line"></i> Reportes
                         </li>
                     </a>
 
-                    <a href="#">
+                    <a href="index.php?view=users">
                         <li>
                             <i class="fas fa-users"></i> Usuarios
                         </li>
@@ -58,7 +58,31 @@
             </div>
         </nav>
 
-        <div class="wrapped-content" id="wrapped-content"></div>
+        <div class="wrapped-content" id="wrapped-content">
+            <?php
+            switch ($view) {
+                case 'home':
+                    require 'views/home.view.php';
+                    break;
+                
+                case 'sales':
+                    require 'views/sales.view.php';
+                    break;
+                    
+                case 'food':
+                    require 'views/food.view.php';
+                    break;
+                    
+                case 'reports':
+                    require 'views/reports.view.php';
+                    break;
+                    
+                case 'users':
+                    require 'views/users.view.php';
+                    break;
+            }
+            ?>
+        </div>
     </div>
 </body>
 
