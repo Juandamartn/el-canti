@@ -8,4 +8,16 @@ function connection($db_config) {
         return false;
     }
 }
+
+function orders($chek, $con) {
+    $result = $con->query("SELECT sell.chek, food.name_food, ingredients.name_ing, food.price, sell.charged FROM sell INNER JOIN food ON sell.fk_id_food=food.id_food INNER JOIN ingredients ON ingredients.id_ing=food.fk_id_ing WHERE charged = '0' AND chek = '$chek'");
+    $result->execute();
+    return $result->fetchAll();
+}
+
+function orderCount($con) {
+    $result = $con->query("SELECT chek, charged FROM sell GROUP BY chek");
+    $result->execute();
+    return $result->fetchAll();
+}
 ?>

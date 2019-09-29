@@ -13,15 +13,9 @@ body {
 
 /** HEADER **/
 
-nav {
-    color: #999;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
 header {
     height: 100px;
+    width: 100%;
     background: #222;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -34,6 +28,7 @@ header {
     justify-content: space-between;
     -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    position: fixed;
 }
 
 .logo {
@@ -80,9 +75,11 @@ header img {
 
 .menu {
     background: #222;
+    margin-top: 100px;
     height: 100%;
     width: 250px;
     font-size: 24px;
+    position: fixed;
 }
 
 .menu ul li {
@@ -111,5 +108,49 @@ header img {
 /** WRAPPED CONTENT **/
 
 .wrapped-content {
-    padding: 150px 0 0 300px;
+    padding: 150px 0px 0px 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    
+}
+
+/** HOME **/
+
+.report {
+    width: 300px;
+    height: 400px;
+    margin: 0px 40px 40px 0px;
+    padding: 20px;
+    text-align: center;
+}
+
+.on {
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+}
+
+.on h1 {
+    margin-bottom: 20px;
+}
+
+.on li {
+    list-style: none;
+    text-align: justify;
+}
+
+.report button {
+    font-size: 106px;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+
+.report button:hover {
+    color: #666;
 }
