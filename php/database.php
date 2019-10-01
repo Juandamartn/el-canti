@@ -10,7 +10,7 @@ function connection($db_config) {
 }
 
 function orders($chek, $con) {
-    $result = $con->query("SELECT sell.chek, food.name_food, ingredients.name_ing, food.price, sell.charged FROM sell INNER JOIN food ON sell.fk_id_food=food.id_food INNER JOIN ingredients ON ingredients.id_ing=food.fk_id_ing WHERE charged = '0' AND chek = '$chek'");
+    $result = $con->query("SELECT sell.chek, food.name_food, ingredients.name_ing, sell.combined, food.price, sell.charged FROM sell INNER JOIN food ON sell.fk_id_food=food.id_food INNER JOIN ingredients ON ingredients.id_ing=food.fk_id_ing WHERE charged = '0' AND chek = '$chek'");
     $result->execute();
     return $result->fetchAll();
 }

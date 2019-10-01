@@ -10,7 +10,18 @@ for($i = 1; $i < $countLength + 1; $i++) {
     <?php foreach($orders as $order): ?>
 
     <ul>
+        <?php if($order['combined'] == 0) { ?>
+        
         <li class="foodList"><?php print_r($order['name_food'].' '.$order['name_ing']); ?></li>
+        
+        <?php } else { ?>
+        
+        <li class="foodList"><?php
+        print_r($order['name_food'].' '.$order['name_ing'].' COMBINADO');
+        $total += 5;
+        ?></li>
+        
+        <?php } ?>
     </ul>
 
     <?php
