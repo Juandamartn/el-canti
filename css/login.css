@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: Roboto-Regular;
+    font-family: Raleway-Regular;
 }
 
 /** HEADER **/
@@ -39,7 +39,7 @@ header img {
     border: none;
     border-bottom: 3px solid #666;
     padding: 8px;
-    font-family: Roboto-Regular;
+    font-family: Raleway-Regular;
 }
 
 .login i {
@@ -56,7 +56,7 @@ header img {
     color: #fff;
     -webkit-transition: 0.5s ease;
     transition: 0.5s ease;
-    font-family: Roboto-Regular;
+    font-family: Raleway-Regular;
     cursor: pointer;
 }
 

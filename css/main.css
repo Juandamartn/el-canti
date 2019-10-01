@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: Roboto-Regular;
+    font-family: Raleway-Regular;
 }
 
 /** HEADER **/
@@ -114,23 +114,83 @@ header img {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    
 }
 
 /** HOME **/
 
 .report {
     width: 300px;
-    height: 400px;
+    height: auto;
     margin: 0px 40px 40px 0px;
     padding: 20px;
     text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .on {
     -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.foodList {
+    margin-bottom: 20px;
+}
+
+.total {
+    display: none;
+}
+
+.sell-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.chek {
+    display: none;
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.cancel {
+    display: none;
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+
+.chek,
+.cancel {
+    width: 100px;
+    height: 30px;
     cursor: pointer;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.chek:hover {
+    color: #fff;
+    background-color: #4F8A10;
+}
+
+.cancel:hover {
+    color: #fff;
+    background-color: #D8000C;
 }
 
 .on h1 {
@@ -142,7 +202,29 @@ header img {
     text-align: justify;
 }
 
-.report button {
+.on:hover {
+    -webkit-box-shadow: 0 3px 15px 3px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 15px 3px rgba(0, 0, 0, 0.16);
+}
+
+.on:hover .total {
+    display: block;
+}
+
+.on:hover .chek, .on:hover .cancel {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.report .newOrder {
     font-size: 106px;
     cursor: pointer;
     border: none;
@@ -151,6 +233,6 @@ header img {
     transition: 0.5s ease;
 }
 
-.report button:hover {
+.report .newOrder:hover {
     color: #666;
 }
