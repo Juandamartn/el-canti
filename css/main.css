@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: Raleway-Regular;
+    font-family: Lato-Regular;
 }
 
 /** HEADER **/
@@ -135,14 +135,14 @@ header img {
     -ms-flex-pack: justify;
     justify-content: space-between;
     -webkit-transition: all 0.5s ease;
+    -webkit-transition: width 0.5s ease;
     transition: all 0.5s ease;
+    cursor: default;
 }
 
 .on {
     -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
 }
 
 .foodList {
@@ -153,7 +153,7 @@ header img {
     display: none;
 }
 
-.sell-buttons {
+.sell-buttons, .options {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -174,8 +174,44 @@ header img {
     background-color: #FFD2D2;
 }
 
+.yes {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    -webkit-animation: animatezoom 0.3s;
+    animation: animatezoom 0.3s;
+}
+
+.no {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    -webkit-animation: animatezoom 0.3s;
+    animation: animatezoom 0.3s;
+}
+
 .chek,
-.cancel {
+.cancel,
+.yes,
+.no {
     width: 100px;
     height: 30px;
     cursor: pointer;
@@ -183,12 +219,14 @@ header img {
     transition: all 0.5s ease;
 }
 
-.chek:hover {
+.chek:hover,
+.yes:hover {
     color: #fff;
     background-color: #4F8A10;
 }
 
-.cancel:hover {
+.cancel:hover,
+.no:hover {
     color: #fff;
     background-color: #D8000C;
 }
@@ -209,9 +247,12 @@ header img {
 
 .on:hover .total {
     display: block;
+    -webkit-animation: animatezoom 0.3s;
+    animation: animatezoom 0.3s;
 }
 
-.on:hover .chek, .on:hover .cancel {
+.on:hover .chek,
+.on:hover .cancel {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -222,6 +263,8 @@ header img {
     -ms-flex-pack: center;
     justify-content: center;
     border-radius: 5px;
+    -webkit-animation: animatezoom 0.3s;
+    animation: animatezoom 0.3s;
 }
 
 .report .newOrder {
@@ -235,4 +278,65 @@ header img {
 
 .report .newOrder:hover {
     color: #666;
+}
+
+/** INGRESAR ALIMENTOS **/
+
+.modal,
+.modal1 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.setOrder {
+    background: #fff;
+    margin: auto;
+    width: 80%;
+    height: 500px;
+    -webkit-animation: animatezoom 0.5s;
+    animation: animatezoom 0.5s;
+}
+
+.deleteOrder {
+    background: #fff;
+    margin: 100px auto;
+    width: 30%;
+    padding: 20px;
+    border-radius: 5px;
+    border-top: 10px solid #228be6;
+    -webkit-animation: animatezoom 0.5s;
+    animation: animatezoom 0.5s;
+}
+
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+@keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
 }

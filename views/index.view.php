@@ -82,6 +82,8 @@
             ?>
         </div>
     </div>
+
+    <script src="js/sell.js"></script>
 </body>
 
 </html>

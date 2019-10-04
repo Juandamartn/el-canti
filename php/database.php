@@ -20,4 +20,10 @@ function orderCount($con) {
     $result->execute();
     return $result->fetchAll();
 }
+
+function deleteOrder($con, $id) {
+    $result = $con->query("DELETE FROM sell WHERE chek = '$id'");
+    $result->execute();
+    return $result;
+}
 ?>
