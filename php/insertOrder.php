@@ -18,5 +18,6 @@ for($i = 1; $i <= $count; $i++) {
     insertFood($con, $_POST['idOrder'], $_POST['item' . $i], $_POST['id' . $i], $combined);
 }
 
-echo $count;
+header('Location: ../index.php?view=home');
+
 ?>
