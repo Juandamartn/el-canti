@@ -83,7 +83,53 @@
         </div>
     </div>
 
-    <script src="js/sell.js"></script>
+    <script>
+        var selectIng = document.getElementById('selectIng');
+        var selectFood = document.getElementById('selectFood');
+        var form = document.getElementById('orderList');
+        var items = document.getElementsByClassName('items');
+
+        function addItem(name, id) {
+            selectIng.style.display = 'flex';
+
+            var newInput = document.createElement("INPUT");
+            newInput.type = 'text';
+            newInput.setAttribute('name', 'item' + (items.length + 1));
+            newInput.setAttribute('value', id);
+            newInput.setAttribute('class', 'hidden');
+            
+            var newDiv = document.createElement('div');
+            newDiv.setAttribute('class', 'items');
+            newDiv.innerText = name;
+
+            selectFood.style.display = 'none';
+            form.appendChild(newInput);
+            form.appendChild(newDiv);
+        }
+
+        function addItemIng(name, id) {
+            selectFood.style.display = 'flex';
+            selectIng.style.display = 'none';
+                        
+            items[items.length - 1].innerText += ' ' + name;
+            
+            var newInput = document.createElement("INPUT");
+            newInput.type = 'text';
+            newInput.setAttribute('name', 'id' + (items.length));
+            newInput.setAttribute('value', id);
+            newInput.setAttribute('readonly', '');
+            newInput.setAttribute('class', 'hidden');
+            
+            form.appendChild(newInput);
+            
+            var newCheck = document.createElement("INPUT");
+            newCheck.type = 'checkbox';
+            newCheck.setAttribute('name', 'check' + (items.length));
+            
+            items[items.length - 1].appendChild(newCheck);
+        }
+
+    </script>
 </body>
 
 </html>

@@ -189,6 +189,7 @@ header img {
     border-radius: 5px;
     -webkit-animation: animatezoom 0.3s;
     animation: animatezoom 0.3s;
+    text-decoration: none;
 }
 
 .no {
@@ -206,6 +207,7 @@ header img {
     border-radius: 5px;
     -webkit-animation: animatezoom 0.3s;
     animation: animatezoom 0.3s;
+    text-decoration: none;
 }
 
 .chek,
@@ -274,6 +276,7 @@ header img {
     background: #fff;
     -webkit-transition: 0.5s ease;
     transition: 0.5s ease;
+    color: #000;
 }
 
 .report .newOrder:hover {
@@ -301,9 +304,11 @@ header img {
     background: #fff;
     margin: auto;
     width: 80%;
-    height: 500px;
+    height: 670px;
     -webkit-animation: animatezoom 0.5s;
     animation: animatezoom 0.5s;
+    border-radius: 0px 10px 10px 10px;
+    border-top: 10px solid #228be6;
 }
 
 .deleteOrder {
@@ -315,6 +320,114 @@ header img {
     border-top: 10px solid #228be6;
     -webkit-animation: animatezoom 0.5s;
     animation: animatezoom 0.5s;
+}
+
+/** ADD ORDER FOOD **/
+
+.selectFood,
+.selectIng {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.food,
+.ing {
+    color: #00529B;
+    background-color: #BDE5F8;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.food:hover,
+.ing:hover {
+    color: #fff;
+    background-color: #00529B;
+}
+
+.containerOrder {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 90%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0px 50px;
+    padding: 30px 0px 0px 0px;
+}
+
+.setOrder .options {
+    margin-top: 20px;
+}
+
+.containerOrder .selectFood {
+    margin-right: 50px;
+}
+
+.containerOrder .selectIng {
+    margin-right: 50px;
+    display: none;
+}
+
+.setOrder .yes {
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.orderList {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+}
+
+.orderList .items {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: none;
+    font-size: 20px;
+    font-family: Lato-Regular;
+    margin-bottom: 10px;
+    width: 400px;
+}
+
+.orderList .items:hover {
+    color: #fff;
+    background-color: #9F6000;
 }
 
 @-webkit-keyframes animatezoom {

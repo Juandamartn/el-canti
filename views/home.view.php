@@ -1,7 +1,10 @@
 <?php
+$current = 1;
+
 for($i = 1; $i < $countLength + 1; $i++) {
     $orders = orders($i, $con);
     $total = 0;
+    $current += 1;
     
     if (empty($orders)) {} else {
 ?>
@@ -47,14 +50,48 @@ for($i = 1; $i < $countLength + 1; $i++) {
 <?php }} ?>
 
 <div class="report">
-    <div class="newOrder" id="newOrder">
+    <a class="newOrder" id="newOrder" href="index.php?view=home&displayF=1">
         <i class="far fa-plus-square"></i>
-    </div>
+    </a>
 </div>
 
-<div class="modal" id="modal">
+<div class="modal" id="modal" <?php if ($_GET['displayF'] == 1) {
+    echo 'style="display: block"';
+} else if ($_GET['displayF'] == 0) {
+    echo 'style="display: none"';
+} ?>>
     <div class="setOrder" id="setOrder">
+        <div class="containerOrder" id="containerOrders">
+            <div class="selectFood" id="selectFood">
+                <?php $foods = getFood($con); foreach($foods as $food): ?>
 
+                <div class="food" ondblclick="addItem('<?php print_r($food['name_food']); ?>', '<?php print_r($food['id_food']); ?>')"><?php print_r($food['name_food']); ?></div>
+                
+                <?php endforeach; ?>
+            </div>
+
+            <div class="selectIng" id="selectIng">
+                <?php $ings = getIng($con); foreach($ings as $ing): ?>
+
+                <div class="ing" ondblclick="addItemIng('<?php print_r($ing['name_ing']); ?>', '<?php print_r($ing['id_ing']); ?>')"><?php print_r($ing['name_ing']); ?></div>
+                
+                <?php endforeach; ?>
+            </div>
+
+            <form action="php/insertOrder.php" method="POST" class="orderList" id="orderList">
+            <input type="text" name="idOrder" value="<?php echo $current; ?>" class="hidden" readonly>
+            </form>
+        </div>
+
+        <div class="options">
+            <button type="submit" class="yes" id="yes" form="orderList">
+                <i class="fas fa-check"></i>
+            </button>
+
+            <a class="no" id="no" href="index.php?view=home&displayF=0">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
     </div>
 </div>
 
