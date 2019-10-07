@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-09-2019 a las 02:02:19
+-- Tiempo de generación: 07-10-2019 a las 17:16:37
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -30,21 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cashout` (
   `id_cashout` int(11) NOT NULL,
-  `fk_id_date` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fk_id_sales` int(11) NOT NULL,
   `fk_id_exp` int(11) NOT NULL,
   `total_cashout` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `date`
---
-
-CREATE TABLE `date` (
-  `id_date` int(11) NOT NULL,
-  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -55,7 +44,7 @@ CREATE TABLE `date` (
 
 CREATE TABLE `expenses` (
   `id_exp` int(11) NOT NULL,
-  `fk_id_date` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `name_exp` varchar(50) COLLATE utf8_bin NOT NULL,
   `amount_exp` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -69,9 +58,20 @@ CREATE TABLE `expenses` (
 CREATE TABLE `food` (
   `id_food` int(11) NOT NULL,
   `name_food` varchar(50) COLLATE utf8_bin NOT NULL,
-  `price` int(11) NOT NULL,
-  `fk_id_ing` int(11) NOT NULL
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `food`
+--
+
+INSERT INTO `food` (`id_food`, `name_food`, `price`) VALUES
+(1, 'KEKA', 27),
+(2, 'TORTA', 45),
+(3, 'BURRO MONTADO', 48),
+(4, 'TACOS (4)', 40),
+(5, 'TACOS (6)', 50),
+(6, 'PLATILLO', 60);
 
 -- --------------------------------------------------------
 
@@ -84,6 +84,21 @@ CREATE TABLE `ingredients` (
   `name_ing` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `ingredients`
+--
+
+INSERT INTO `ingredients` (`id_ing`, `name_ing`) VALUES
+(1, 'JAMON CON QUESO'),
+(2, 'DESHEBRADA'),
+(3, 'LOMO'),
+(4, 'CHILE RELLENO'),
+(5, 'COLITA DE PAVO'),
+(6, 'BISTEC'),
+(7, 'ALPASTOR'),
+(8, 'PIERNA AHUMADA'),
+(9, 'ALAMBRE');
+
 -- --------------------------------------------------------
 
 --
@@ -92,10 +107,32 @@ CREATE TABLE `ingredients` (
 
 CREATE TABLE `sales` (
   `id_sales` int(11) NOT NULL,
-  `fk_id_date` int(11) NOT NULL,
-  `fk_id_food` int(11) NOT NULL,
-  `total_sales` float NOT NULL
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sell`
+--
+
+CREATE TABLE `sell` (
+  `id_sell` int(11) NOT NULL,
+  `chek` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fk_id_food` int(11) NOT NULL,
+  `fk_id_ing` int(11) NOT NULL,
+  `combined` enum('0','1') COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `charged` enum('0','1') COLLATE utf8_bin NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `sell`
+--
+
+INSERT INTO `sell` (`id_sell`, `chek`, `date`, `fk_id_food`, `fk_id_ing`, `combined`, `charged`) VALUES
+(17092, 1, '2019-10-07 09:15:00', 1, 7, '0', '0');
 
 -- --------------------------------------------------------
 
@@ -127,29 +164,20 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `su`) VALUES
 --
 ALTER TABLE `cashout`
   ADD PRIMARY KEY (`id_cashout`),
-  ADD KEY `fk_id_date` (`fk_id_date`),
   ADD KEY `fk_id_exp` (`fk_id_exp`),
   ADD KEY `fk_id_sales` (`fk_id_sales`);
-
---
--- Indices de la tabla `date`
---
-ALTER TABLE `date`
-  ADD PRIMARY KEY (`id_date`);
 
 --
 -- Indices de la tabla `expenses`
 --
 ALTER TABLE `expenses`
-  ADD PRIMARY KEY (`id_exp`),
-  ADD KEY `expenses_ibfk_1` (`fk_id_date`);
+  ADD PRIMARY KEY (`id_exp`);
 
 --
 -- Indices de la tabla `food`
 --
 ALTER TABLE `food`
-  ADD PRIMARY KEY (`id_food`),
-  ADD KEY `fk_id_ing` (`fk_id_ing`);
+  ADD PRIMARY KEY (`id_food`);
 
 --
 -- Indices de la tabla `ingredients`
@@ -161,9 +189,15 @@ ALTER TABLE `ingredients`
 -- Indices de la tabla `sales`
 --
 ALTER TABLE `sales`
-  ADD PRIMARY KEY (`id_sales`),
-  ADD KEY `FK DATE` (`fk_id_date`),
-  ADD KEY `FK FOOD` (`fk_id_food`);
+  ADD PRIMARY KEY (`id_sales`);
+
+--
+-- Indices de la tabla `sell`
+--
+ALTER TABLE `sell`
+  ADD PRIMARY KEY (`id_sell`),
+  ADD KEY `fk_id_food` (`fk_id_food`),
+  ADD KEY `fk_id_ing` (`fk_id_ing`);
 
 --
 -- Indices de la tabla `users`
@@ -182,12 +216,6 @@ ALTER TABLE `cashout`
   MODIFY `id_cashout` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `date`
---
-ALTER TABLE `date`
-  MODIFY `id_date` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `expenses`
 --
 ALTER TABLE `expenses`
@@ -197,19 +225,25 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT de la tabla `food`
 --
 ALTER TABLE `food`
-  MODIFY `id_food` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_food` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id_ing` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
   MODIFY `id_sales` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sell`
+--
+ALTER TABLE `sell`
+  MODIFY `id_sell` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17093;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -225,28 +259,15 @@ ALTER TABLE `users`
 -- Filtros para la tabla `cashout`
 --
 ALTER TABLE `cashout`
-  ADD CONSTRAINT `cashout_ibfk_1` FOREIGN KEY (`fk_id_date`) REFERENCES `date` (`id_date`) ON DELETE CASCADE,
   ADD CONSTRAINT `cashout_ibfk_2` FOREIGN KEY (`fk_id_exp`) REFERENCES `expenses` (`id_exp`) ON DELETE CASCADE,
   ADD CONSTRAINT `cashout_ibfk_3` FOREIGN KEY (`fk_id_sales`) REFERENCES `sales` (`id_sales`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `expenses`
+-- Filtros para la tabla `sell`
 --
-ALTER TABLE `expenses`
-  ADD CONSTRAINT `expenses_ibfk_1` FOREIGN KEY (`fk_id_date`) REFERENCES `date` (`id_date`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `food`
---
-ALTER TABLE `food`
-  ADD CONSTRAINT `food_ibfk_1` FOREIGN KEY (`fk_id_ing`) REFERENCES `ingredients` (`id_ing`);
-
---
--- Filtros para la tabla `sales`
---
-ALTER TABLE `sales`
-  ADD CONSTRAINT `FK DATE` FOREIGN KEY (`fk_id_date`) REFERENCES `date` (`id_date`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK FOOD` FOREIGN KEY (`fk_id_food`) REFERENCES `food` (`id_food`) ON DELETE CASCADE;
+ALTER TABLE `sell`
+  ADD CONSTRAINT `sell_ibfk_2` FOREIGN KEY (`fk_id_food`) REFERENCES `food` (`id_food`) ON DELETE CASCADE,
+  ADD CONSTRAINT `sell_ibfk_3` FOREIGN KEY (`fk_id_ing`) REFERENCES `ingredients` (`id_ing`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
