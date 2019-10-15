@@ -1,18 +1,21 @@
 <?php
-$current = 1;
+$noOrder = noOrder($con);
+$total = 0;  
+$current = lastOrder($con);
 
-for($i = 1; $i < $countLength + 1; $i++) {
-    $orders = orders($i, $con);
-    $total = 0;
-    $current += 1;
-    
-    if (empty($orders)) {} else {
+if ($current == false) {
+    $current = 1;
+} else {
+    $current = $current[0]['chek'] + 1;
+}
 ?>
 
-<div class="report on" id="report">
-    <h1>Cuenta <?php echo $i; ?></h1>
+<?php foreach($noOrder as $num): ?>
 
-    <?php foreach($orders as $order): ?>
+<div class="report on" id="report">
+    <h1><?php $del = isDelivery($con, $num['chek']); foreach ($del as $deliv): if ($deliv['deliver'] == 0) {?>Cuenta <?php } else {?>Para llevar <?php } endforeach; ?><?php print_r($num['chek']); ?></h1>
+
+    <?php $orders = orderDetails($con, $num['chek']); foreach($orders as $order): ?>
 
     <ul>
         <?php if($order['combined'] == 0) { ?>
@@ -41,13 +44,13 @@ for($i = 1; $i < $countLength + 1; $i++) {
             <i class="fas fa-dollar-sign"></i>
         </a>
 
-        <a class="cancel" id="cancel" href="index.php?view=home&id=<?php echo $i; ?>&display=1">
+        <a class="cancel" id="cancel" href="index.php?view=home&id=<?php echo $num['chek']; ?>&display=1">
             <i class="fas fa-trash"></i>
         </a>
     </div>
 </div>
 
-<?php }} ?>
+<?php endforeach; ?>
 
 <div class="report">
     <a class="newOrder" id="newOrder" href="index.php?view=home&displayF=1">
@@ -65,26 +68,38 @@ for($i = 1; $i < $countLength + 1; $i++) {
             <div class="selectFood" id="selectFood">
                 <?php $foods = getFood($con); foreach($foods as $food): ?>
 
-                <div class="food" ondblclick="addItem('<?php print_r($food['name_food']); ?>', '<?php print_r($food['id_food']); ?>')"><?php print_r($food['name_food']); ?></div>
-                
+                <div class="food" ondblclick="addItem('<?php print_r($food['name_food']); ?>', '<?php print_r($food['id_food']); ?>')">
+                    <p><?php print_r($food['name_food']); ?></p>
+
+                    <img src="svg/<?php $nameFood = str_replace(' ', '', $food['name_food']); echo $nameFood; ?>.svg" alt="">
+                </div>
+
                 <?php endforeach; ?>
             </div>
 
             <div class="selectIng" id="selectIng">
                 <?php $ings = getIng($con); foreach($ings as $ing): ?>
 
-                <div class="ing" ondblclick="addItemIng('<?php print_r($ing['name_ing']); ?>', '<?php print_r($ing['id_ing']); ?>')"><?php print_r($ing['name_ing']); ?></div>
-                
+                <div class="ing" ondblclick="addItemIng('<?php print_r($ing['name_ing']); ?>', '<?php print_r($ing['id_ing']); ?>')">
+                    <p><?php print_r($ing['name_ing']); ?></p>
+
+                    <img src="svg/<?php $nameIng = str_replace(' ', '', $ing['name_ing']); echo $nameIng; ?>.svg" alt="">
+                </div>
+
                 <?php endforeach; ?>
             </div>
 
             <form action="php/insertOrder.php" method="POST" class="orderList" id="orderList">
-            <input type="text" name="idOrder" value="<?php echo $current; ?>" class="hidden" readonly>
+                <input type="text" name="idOrder" value="<?php echo $current; ?>" class="hidden" readonly>
+                
+                <input type="checkbox" name="deliver" id="deliverCheck">
+                
+                <label for="deliverCheck" class="deliverCheckS"><span></span>Pedido para llevar</label>
             </form>
         </div>
 
         <div class="options">
-            <button type="submit" class="yes" id="yes" form="orderList">
+            <button class="yes" id="acept-deliver" onclick="accept()">
                 <i class="fas fa-check"></i>
             </button>
 
@@ -92,6 +107,14 @@ for($i = 1; $i < $countLength + 1; $i++) {
                 <i class="fas fa-times"></i>
             </a>
         </div>
+    </div>
+
+    <div class="warning" id="warning">
+        <i class="fas fa-exclamation-circle"></i>
+
+        <p>No ha ingresado alimentos</p>
+
+        <button class="noItem" id="noItem" onclick="closeDeliver()">Aceptar</button>
     </div>
 </div>
 
@@ -104,7 +127,7 @@ for($i = 1; $i < $countLength + 1; $i++) {
         <h2>¿Está seguro que desea eliminar la cuenta?</h2>
 
         <div class="options">
-            <a class="yes" id="yes" href="php/deleteOrder.php?id=<?php echo $_GET['id'] ?>">
+            <a class="yes" id="yes" href="php/deleteOrder.php?id=<?php echo $_GET['id']; ?>">
                 <i class="fas fa-check"></i>
             </a>
 

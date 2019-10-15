@@ -304,7 +304,7 @@ header img {
     background: #fff;
     margin: auto;
     width: 80%;
-    height: 670px;
+    padding-bottom: 20px;
     -webkit-animation: animatezoom 0.5s;
     animation: animatezoom 0.5s;
     border-radius: 0px 10px 10px 10px;
@@ -329,34 +329,71 @@ header img {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+    width: 60%;
     font-size: 20px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .food,
 .ing {
-    color: #00529B;
-    background-color: #BDE5F8;
+    margin: 20px;
+    text-align: center;
+    width: 140px;
+    height: 140px;
+    color: #000;
+    background-color: #fff;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    -webkit-transition: 0.5s ease;
-    transition: 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none;    
+}
+
+.food p,
+.ing p {
+    margin-bottom: 10px;
+}
+
+.food img,
+.ing img {
+    width: 50px;
 }
 
 .food:hover,
 .ing:hover {
-    color: #fff;
+    font-family: Lato-Bold;
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 3px 30px 0 rgba(0, 0, 0, 0.16);
+}
+
+.items input[type="checkbox"] {
+    display: none;
+}
+
+.items input[type="checkbox"] + label span {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 3px solid #00529B;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    -webkit-transition: 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.items input[type="checkbox"] + label span:hover {
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.items input[type="checkbox"]:checked + label span {
     background-color: #00529B;
 }
 
@@ -376,12 +413,7 @@ header img {
     margin-top: 20px;
 }
 
-.containerOrder .selectFood {
-    margin-right: 50px;
-}
-
 .containerOrder .selectIng {
-    margin-right: 50px;
     display: none;
 }
 
@@ -393,10 +425,91 @@ header img {
     display: none;
 }
 
+.deliver {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    margin-left: 30%;
+    margin-top: 100px;
+    width: 500px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    -webkit-animation: animatezoom 0.5s;
+    animation: animatezoom 0.5s;
+}
+
+.warning {
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #9F6000;
+    background-color: #FEEFB3;
+    font-size: 24px;
+    margin-left: 40%;
+    margin-top: 100px;
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    -webkit-animation: animatezoom 0.5s;
+    animation: animatezoom 0.5s;
+    display: none;
+}
+
+.warning p {
+    margin-bottom: 10px;
+}
+
+.warning button {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    font-family: Lato-Regular;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.warning button:hover {
+    opacity: 0.5;
+}
+
+.deliver p {
+    text-align: center;
+    font-size: 24px;
+}
+
+.deliver-options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+.deliver-options button {
+    border: none;
+}
+
 .orderList {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    width: 40%;
+    margin-left:50px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -407,8 +520,8 @@ header img {
 }
 
 .orderList .items {
-    color: #9F6000;
-    background-color: #FEEFB3;
+    color: #00529B;
+    background-color: #BDE5F8;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -422,12 +535,39 @@ header img {
     font-size: 20px;
     font-family: Lato-Regular;
     margin-bottom: 10px;
-    width: 400px;
+    width: 100%;
 }
 
-.orderList .items:hover {
-    color: #fff;
-    background-color: #9F6000;
+input[name="deliver"] {
+    display: none;
+}
+
+.deliverCheckS {
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+input[name="deliver"] + .deliverCheckS span {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 3px solid #000;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    -webkit-transition: 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+input[name="deliver"] + .deliverCheckS span:hover {
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+input[name="deliver"]:checked + .deliverCheckS span {
+    background-color: #000;
 }
 
 @-webkit-keyframes animatezoom {

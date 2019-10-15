@@ -3,7 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
     <title>Antojitos "El Cantinflas"</title>
+    
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="fontawesome/css/all.css">
 </head>
@@ -36,12 +41,6 @@
                     </li>
                 </a>
 
-                <a href="index.php?view=food">
-                    <li>
-                        <i class="fas fa-utensils"></i> Alimentos
-                    </li>
-                </a>
-
                 <a href="index.php?view=reports">
                     <li>
                         <i class="fas fa-chart-line"></i> Reportes
@@ -67,10 +66,6 @@
                     require 'views/sales.view.php';
                     break;
                     
-                case 'food':
-                    require 'views/food.view.php';
-                    break;
-                    
                 case 'reports':
                     require 'views/reports.view.php';
                     break;
@@ -88,6 +83,9 @@
         var selectFood = document.getElementById('selectFood');
         var form = document.getElementById('orderList');
         var items = document.getElementsByClassName('items');
+        var check = document.getElementsByClassName('check');
+        var warning = document.getElementById('warning');
+        var noItem = document.getElementById('noItem');
 
         function addItem(name, id) {
             selectIng.style.display = 'flex';
@@ -97,7 +95,7 @@
             newInput.setAttribute('name', 'item' + (items.length + 1));
             newInput.setAttribute('value', id);
             newInput.setAttribute('class', 'hidden');
-            
+
             var newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'items');
             newDiv.innerText = name;
@@ -110,7 +108,7 @@
         function addItemIng(name, id) {
             selectFood.style.display = 'flex';
             selectIng.style.display = 'none';
-                        
+            
             items[items.length - 1].innerText += ' ' + name;
             
             var newInput = document.createElement("INPUT");
@@ -119,14 +117,35 @@
             newInput.setAttribute('value', id);
             newInput.setAttribute('readonly', '');
             newInput.setAttribute('class', 'hidden');
-            
+
             form.appendChild(newInput);
-            
+
             var newCheck = document.createElement("INPUT");
             newCheck.type = 'checkbox';
             newCheck.setAttribute('name', 'check' + (items.length));
+            newCheck.setAttribute('id', 'check' + (items.length));
+            
+            var newLabel = document.createElement("label");
+            newLabel.setAttribute('for', 'check' + (items.length));
+            newLabel.setAttribute('class', 'check');
+            
+            var newSpan = document.createElement("span");
             
             items[items.length - 1].appendChild(newCheck);
+            items[items.length - 1].appendChild(newLabel);
+            check[check.length - 1].appendChild(newSpan);
+        }
+        
+        function accept () {
+            if (items.length == 0) {
+                warning.style.display = 'block';
+            } else {
+                form.submit();
+            }
+        }
+        
+        function closeDeliver () {
+            warning.style.display = 'none';
         }
 
     </script>
