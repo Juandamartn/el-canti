@@ -8,7 +8,7 @@
     <meta http-equiv='pragma' content='no-cache'>
 
     <title>Antojitos "El Cantinflas"</title>
-    
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="fontawesome/css/all.css">
 </head>
@@ -98,19 +98,20 @@
 
             var newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'items');
+            newDiv.setAttribute('id', 'itemOrder' + (items.length + 1));
+            newDiv.setAttribute('ondblclick', 'deleteItem(this)');
             newDiv.innerText = name;
+            newDiv.dataset.num = items.length + 1
 
             selectFood.style.display = 'none';
-            form.appendChild(newInput);
             form.appendChild(newDiv);
+            items[items.length - 1].appendChild(newInput);
         }
 
         function addItemIng(name, id) {
             selectFood.style.display = 'flex';
             selectIng.style.display = 'none';
-            
-            items[items.length - 1].innerText += ' ' + name;
-            
+
             var newInput = document.createElement("INPUT");
             newInput.type = 'text';
             newInput.setAttribute('name', 'id' + (items.length));
@@ -118,34 +119,40 @@
             newInput.setAttribute('readonly', '');
             newInput.setAttribute('class', 'hidden');
 
-            form.appendChild(newInput);
+            items[items.length - 1].appendChild(newInput);
 
             var newCheck = document.createElement("INPUT");
             newCheck.type = 'checkbox';
             newCheck.setAttribute('name', 'check' + (items.length));
             newCheck.setAttribute('id', 'check' + (items.length));
-            
+
             var newLabel = document.createElement("label");
             newLabel.setAttribute('for', 'check' + (items.length));
             newLabel.setAttribute('class', 'check');
-            
+
             var newSpan = document.createElement("span");
-            
+
             items[items.length - 1].appendChild(newCheck);
             items[items.length - 1].appendChild(newLabel);
             check[check.length - 1].appendChild(newSpan);
         }
-        
-        function accept () {
+
+        function accept() {
             if (items.length == 0) {
                 warning.style.display = 'block';
             } else {
+                var itemCount = items[items.length -1].dataset
+                
                 form.submit();
             }
         }
-        
-        function closeDeliver () {
+
+        function closeDeliver() {
             warning.style.display = 'none';
+        }
+
+        function deleteItem(id) {
+            form.removeChild(id);
         }
 
     </script>

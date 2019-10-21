@@ -16,27 +16,39 @@ if (isset($_POST['deliver']) && $_POST['deliver'] == 'on') {
 echo $count . ' DELIVER: ' . $_POST['deliver'];
 
 for($i = 1; $i <= $count; $i++) {
-    if (isset($_POST['check' . $i]) && $_POST['check' . $i] == 'on' && isset($_POST['deliver']) == false) {
-        $count -= 0.5;
-        $combined = 1;
-        $deliver = 0;
-    } else if (isset($_POST['check' . $i]) && $_POST['check' . $i] == 'on' && isset($_POST['deliver']) && $_POST['deliver'] == 'on') {
-        $count -= 0.5;
-        $combined = 1;
-        $deliver = 1;
-    } else if (isset($_POST['deliver']) && $_POST['deliver'] == 'on') {
-        $combined = 0;
-        $deliver = 1;
+    if (isset($_POST['item' . $i]) && isset($_POST['id' . $i]) && isset($_POST['chek' . $i])) {
+        continue;
     } else {
-        $combined = 0;
-        $deliver = 0;
     }
-    
-    insertFood($con, $_POST['idOrder'], $_POST['item' . $i], $_POST['id' . $i], $combined, $deliver);
 }
 
-$db_config['current'] += 1;
+for($i = 1; $i <= $count; $i++) {
+    echo $count;
+    if (isset($_POST['item' . $i]) && isset($_POST['id' . $i]) && isset($_POST['chek' . $i])) {
+        echo 'no';
+        continue;
+    } else {
+        echo 'si';
+        if (isset($_POST['check' . $i]) && $_POST['check' . $i] == 'on' && isset($_POST['deliver']) == false) {
+            $count -= 0.5;
+            $combined = 1;
+            $deliver = 0;
+        } else if (isset($_POST['check' . $i]) && $_POST['check' . $i] == 'on' && isset($_POST['deliver']) && $_POST['deliver'] == 'on') {
+            $count -= 0.5;
+            $combined = 1;
+            $deliver = 1;
+        } else if (isset($_POST['deliver']) && $_POST['deliver'] == 'on') {
+            $combined = 0;
+            $deliver = 1;
+        } else {
+            $combined = 0;
+            $deliver = 0;
+        }
 
-header('Location: ../index.php?view=home');
+        insertFood($con, $_POST['idOrder'], $_POST['item' . $i], $_POST['id' . $i], $combined, $deliver);
+    } 
+}
+
+//header('Location: ../index.php?view=home');
 
 ?>

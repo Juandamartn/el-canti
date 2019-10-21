@@ -135,9 +135,9 @@ header img {
     -ms-flex-pack: justify;
     justify-content: space-between;
     -webkit-transition: all 0.5s ease;
-    -webkit-transition: width 0.5s ease;
     transition: all 0.5s ease;
     cursor: default;
+    -webkit-animation: animatezoon 0.5s;
 }
 
 .on {
@@ -461,8 +461,8 @@ header img {
     margin-top: 100px;
     -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    -webkit-animation: animatezoom 0.5s;
-    animation: animatezoom 0.5s;
+    -webkit-animation: animatezoom 0.3s;
+    animation: animatezoom 0.3s;
     display: none;
 }
 
