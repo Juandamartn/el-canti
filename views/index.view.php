@@ -89,32 +89,51 @@
 
         function addItem(name, id) {
             selectIng.style.display = 'flex';
+            var ind = 0;
+            
+            if (items.length == 0) {
+                ind = 1;
+            } else {
+                ind = parseInt(items[items.length - 1].dataset.num, 10) + 1;
+            }
 
             var newInput = document.createElement("INPUT");
             newInput.type = 'text';
-            newInput.setAttribute('name', 'item' + (items.length + 1));
+            newInput.setAttribute('name', 'item' + ind);
             newInput.setAttribute('value', id);
             newInput.setAttribute('class', 'hidden');
 
+            var newP = document.createElement('p');
+            newP.innerText = name;
+            
             var newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'items');
-            newDiv.setAttribute('id', 'itemOrder' + (items.length + 1));
+            newDiv.setAttribute('id', 'itemOrder' + ind);
             newDiv.setAttribute('ondblclick', 'deleteItem(this)');
-            newDiv.innerText = name;
-            newDiv.dataset.num = items.length + 1
-
+            newDiv.dataset.num = ind;
+            
             selectFood.style.display = 'none';
             form.appendChild(newDiv);
             items[items.length - 1].appendChild(newInput);
+            items[items.length - 1].appendChild(newP);
         }
 
         function addItemIng(name, id) {
             selectFood.style.display = 'flex';
             selectIng.style.display = 'none';
+            
+            if (items.length == 0) {
+                ind = 1;
+            } else {
+                ind = items[items.length - 1].dataset.num;
+            }
 
+            var nameF = items[items.length - 1].lastChild;
+            nameF.innerText += ' ' + name;
+            
             var newInput = document.createElement("INPUT");
             newInput.type = 'text';
-            newInput.setAttribute('name', 'id' + (items.length));
+            newInput.setAttribute('name', 'id' + ind);
             newInput.setAttribute('value', id);
             newInput.setAttribute('readonly', '');
             newInput.setAttribute('class', 'hidden');
@@ -123,8 +142,8 @@
 
             var newCheck = document.createElement("INPUT");
             newCheck.type = 'checkbox';
-            newCheck.setAttribute('name', 'check' + (items.length));
-            newCheck.setAttribute('id', 'check' + (items.length));
+            newCheck.setAttribute('name', 'check' + ind);
+            newCheck.setAttribute('id', 'check' + ind);
 
             var newLabel = document.createElement("label");
             newLabel.setAttribute('for', 'check' + (items.length));
@@ -135,13 +154,22 @@
             items[items.length - 1].appendChild(newCheck);
             items[items.length - 1].appendChild(newLabel);
             check[check.length - 1].appendChild(newSpan);
+            
+            var newInd = document.createElement('INPUT');
+            newInd.type = "text";
+            newInd.setAttribute('name', 'ind' + ind);
+            newInd.setAttribute('id', 'ind' + ind);
+            newInd.setAttribute('value', ind);
+            newInd.setAttribute('class', 'hidden');
+            
+            items[items.length - 1].appendChild(newInd);
         }
 
         function accept() {
             if (items.length == 0) {
                 warning.style.display = 'block';
             } else {
-                var itemCount = items[items.length -1].dataset
+                var itemCount = items[items.length - 1].dataset;
                 
                 form.submit();
             }

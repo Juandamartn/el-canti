@@ -37,7 +37,7 @@ if ($current == false) {
     endforeach;
     ?>
 
-    <h2 class="total"><?php echo '$ '.$total; ?></h2>
+    <h2 class="total"><?php echo '$ '.$total; $total = 0; ?></h2>
 
     <div class="sell-buttons">
         <a class="chek" id="chek">
