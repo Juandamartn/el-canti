@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2019 a las 17:16:37
+-- Tiempo de generación: 31-10-2019 a las 04:31:53
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -107,6 +107,7 @@ INSERT INTO `ingredients` (`id_ing`, `name_ing`) VALUES
 
 CREATE TABLE `sales` (
   `id_sales` int(11) NOT NULL,
+  `chek` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -124,6 +125,7 @@ CREATE TABLE `sell` (
   `fk_id_food` int(11) NOT NULL,
   `fk_id_ing` int(11) NOT NULL,
   `combined` enum('0','1') COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `deliver` enum('0','1') COLLATE utf8_bin NOT NULL DEFAULT '0',
   `charged` enum('0','1') COLLATE utf8_bin NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -131,8 +133,8 @@ CREATE TABLE `sell` (
 -- Volcado de datos para la tabla `sell`
 --
 
-INSERT INTO `sell` (`id_sell`, `chek`, `date`, `fk_id_food`, `fk_id_ing`, `combined`, `charged`) VALUES
-(17092, 1, '2019-10-07 09:15:00', 1, 7, '0', '0');
+INSERT INTO `sell` (`id_sell`, `chek`, `date`, `fk_id_food`, `fk_id_ing`, `combined`, `deliver`, `charged`) VALUES
+(9, 1, '2019-10-30 20:28:30', 5, 6, '0', '0', '1');
 
 -- --------------------------------------------------------
 
@@ -237,13 +239,13 @@ ALTER TABLE `ingredients`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id_sales` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `sell`
 --
 ALTER TABLE `sell`
-  MODIFY `id_sell` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17093;
+  MODIFY `id_sell` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
