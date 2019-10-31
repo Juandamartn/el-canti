@@ -166,6 +166,8 @@ header img {
     display: none;
     color: #4F8A10;
     background-color: #DFF2BF;
+    border: none;
+    font-size: 16px;
 }
 
 .cancel {
@@ -186,6 +188,7 @@ header img {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    border: none;
     border-radius: 5px;
     -webkit-animation: animatezoom 0.3s;
     animation: animatezoom 0.3s;
@@ -204,6 +207,7 @@ header img {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    border: none;
     border-radius: 5px;
     -webkit-animation: animatezoom 0.3s;
     animation: animatezoom 0.3s;
@@ -300,7 +304,8 @@ header img {
     padding-top: 60px;
 }
 
-.setOrder {
+.setOrder,
+.charge {
     background: #fff;
     margin: auto;
     width: 80%;
@@ -309,6 +314,30 @@ header img {
     animation: animatezoom 0.5s;
     border-radius: 0px 10px 10px 10px;
     border-top: 10px solid #228be6;
+}
+
+.charge {
+    width: 500px;
+}
+
+.charge01 {
+    margin: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.charge01 p,
+.charge01 input[type="text"] {
+    margin-bottom: 20px;
+}
+
+.charge01 input[type="text"] {
+    font-size: 30px;
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    border-bottom: 5px solid #228be6;
+    font-family: Lato-Bold;
 }
 
 .deleteOrder {
@@ -409,16 +438,13 @@ header img {
     padding: 30px 0px 0px 0px;
 }
 
-.setOrder .options {
+.setOrder .options,
+.charge .options{
     margin-top: 20px;
 }
 
 .containerOrder .selectIng {
     display: none;
-}
-
-.setOrder .yes {
-    border: none;
 }
 
 .hidden {
@@ -520,6 +546,9 @@ header img {
 }
 
 .orderList .items {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     color: #00529B;
     background-color: #BDE5F8;
     padding: 10px;

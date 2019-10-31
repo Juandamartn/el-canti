@@ -37,12 +37,12 @@ if ($current == false) {
     endforeach;
     ?>
 
-    <h2 class="total"><?php echo '$ '.$total; $total = 0; ?></h2>
+    <h2 class="total" id="total<?php echo $num['chek']; ?>"><?php echo '$ '.$total; $total = 0; ?></h2>
 
     <div class="sell-buttons">
-        <a class="chek" id="chek">
+        <button class="chek" id="chek" onclick="chargeOrder(this)" data-id="<?php echo $num['chek']; ?>">
             <i class="fas fa-dollar-sign"></i>
-        </a>
+        </button>
 
         <a class="cancel" id="cancel" href="index.php?view=home&id=<?php echo $num['chek']; ?>&display=1">
             <i class="fas fa-trash"></i>
@@ -58,7 +58,7 @@ if ($current == false) {
     </a>
 </div>
 
-<div class="modal" id="modal" <?php if ($_GET['displayF'] == 1) {
+<div class="modal" id="modal" <?php if ($_GET['displayF'] == false) {  } else if ($_GET['displayF'] == 1) {
     echo 'style="display: block"';
 } else if ($_GET['displayF'] == 0) {
     echo 'style="display: none"';
@@ -91,9 +91,9 @@ if ($current == false) {
 
             <form action="php/insertOrder.php" method="POST" class="orderList" id="orderList">
                 <input type="text" name="idOrder" value="<?php echo $current; ?>" class="hidden" readonly>
-                
+
                 <input type="checkbox" name="deliver" id="deliverCheck">
-                
+
                 <label for="deliverCheck" class="deliverCheckS"><span></span>Pedido para llevar</label>
             </form>
         </div>
@@ -115,6 +115,25 @@ if ($current == false) {
         <p>No ha ingresado alimentos</p>
 
         <button class="noItem" id="noItem" onclick="closeDeliver()">Aceptar</button>
+    </div>
+
+    <div class="charge hidden" id="charge">
+        <div class="charge01" id="charge01">
+            <p class="totalCharge" id="totalCharge"></p>
+            <label for="money">Efectivo: </label>
+            <input type="text" class="money" id="money" name="money" onkeyup="subtraction(this.value)" autofocus>
+            <p class="exchange" id="exchange">Cambio:</p>
+        </div>
+
+        <div class="options">
+            <button class="yes" id="chargeYes" onclick="chargeO()">
+                <i class="fas fa-check"></i>
+            </button>
+
+            <button class="no" id="no" onclick="closeForm(this)">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
     </div>
 </div>
 

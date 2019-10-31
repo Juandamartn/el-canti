@@ -61,4 +61,14 @@ function lastOrder($con) {
     $result->execute();
     return $result->fetchAll();
 }
+
+function insertSale($con, $chek, $total) {
+    $result = $con->query("INSERT INTO sales (id_sales, chek, date, total) VALUES (NULL, '$chek', CURRENT_TIMESTAMP, '$total')");
+    return true;
+}
+
+function chargeOrder($con, $chek) {
+    $result = $con->query("UPDATE sell SET charged = '1' WHERE chek = '$chek'");
+    return true;
+}
 ?>

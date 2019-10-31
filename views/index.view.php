@@ -86,11 +86,17 @@
         var check = document.getElementsByClassName('check');
         var warning = document.getElementById('warning');
         var noItem = document.getElementById('noItem');
+        var charge = document.getElementById('charge');
+        var modal = document.getElementById('modal');
+        var contOrder = document.getElementById('setOrder');
+        var charge01 = document.getElementById('charge01');
+        var chargeYes = document.getElementById('chargeYes');
+        var totalCharge = document.getElementById('totalCharge');
 
         function addItem(name, id) {
             selectIng.style.display = 'flex';
             var ind = 0;
-            
+
             if (items.length == 0) {
                 ind = 1;
             } else {
@@ -105,13 +111,13 @@
 
             var newP = document.createElement('p');
             newP.innerText = name;
-            
+
             var newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'items');
             newDiv.setAttribute('id', 'itemOrder' + ind);
             newDiv.setAttribute('ondblclick', 'deleteItem(this)');
             newDiv.dataset.num = ind;
-            
+
             selectFood.style.display = 'none';
             form.appendChild(newDiv);
             items[items.length - 1].appendChild(newInput);
@@ -121,7 +127,7 @@
         function addItemIng(name, id) {
             selectFood.style.display = 'flex';
             selectIng.style.display = 'none';
-            
+
             if (items.length == 0) {
                 ind = 1;
             } else {
@@ -130,7 +136,7 @@
 
             var nameF = items[items.length - 1].lastChild;
             nameF.innerText += ' ' + name;
-            
+
             var newInput = document.createElement("INPUT");
             newInput.type = 'text';
             newInput.setAttribute('name', 'id' + ind);
@@ -154,14 +160,14 @@
             items[items.length - 1].appendChild(newCheck);
             items[items.length - 1].appendChild(newLabel);
             check[check.length - 1].appendChild(newSpan);
-            
+
             var newInd = document.createElement('INPUT');
             newInd.type = "text";
             newInd.setAttribute('name', 'ind' + ind);
             newInd.setAttribute('id', 'ind' + ind);
             newInd.setAttribute('value', ind);
             newInd.setAttribute('class', 'hidden');
-            
+
             items[items.length - 1].appendChild(newInd);
         }
 
@@ -170,19 +176,63 @@
                 warning.style.display = 'block';
             } else {
                 var itemCount = items[items.length - 1].dataset;
-                
+
                 form.submit();
             }
         }
 
-        function closeDeliver() {
-            warning.style.display = 'none';
+        function showForm(form) {
+            var cont = form.dataset.container;
+        }
+
+        function closeForm(form) {
+            var cont = form.parentNode;
+
+            cont.parentNode.style.display = 'none';
+            modal.style.display = 'none';
         }
 
         function deleteItem(id) {
             form.removeChild(id);
         }
 
+        function chargeOrder(form) {
+            modal.style.display = 'block';
+            contOrder.style.display = 'none';
+            charge.style.display = 'block';
+            
+            var id = form.dataset.id;
+            chargeYes.dataset.id = id;
+            
+            var total = document.getElementById('total' + id);
+            totalCharge.innerText = 'Total: ' + total.innerHTML;
+            
+            chargeYes.dataset.total = total.innerHTML;
+        }
+        
+        function chargeO() {
+            window.location = "php/chargeOrder.php?chek=" + chargeYes.dataset.id + "&total=" + chargeYes.dataset.total.substring(2, chargeYes.dataset.total.length);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+        function subtraction(val) {
+            var t = 0;
+            val = parseInt(val);
+            
+            t = chargeYes.dataset.total.substring(2, chargeYes.dataset.total.length);
+            
+            t = (t == null || t == undefined || t == "") ? 0 : t;
+            
+            t = (parseInt(val) - parseInt(t));
+            
+            exchange.innerHTML = 'Cambio: $ ' + t;
+        }
+        
     </script>
 </body>
 
