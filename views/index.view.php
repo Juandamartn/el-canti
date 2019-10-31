@@ -200,16 +200,16 @@
             modal.style.display = 'block';
             contOrder.style.display = 'none';
             charge.style.display = 'block';
-            
+
             var id = form.dataset.id;
             chargeYes.dataset.id = id;
-            
+
             var total = document.getElementById('total' + id);
             totalCharge.innerText = 'Total: ' + total.innerHTML;
-            
+
             chargeYes.dataset.total = total.innerHTML;
         }
-        
+
         function chargeO() {
             window.location = "php/chargeOrder.php?chek=" + chargeYes.dataset.id + "&total=" + chargeYes.dataset.total.substring(2, chargeYes.dataset.total.length);
         }
@@ -219,20 +219,20 @@
                 modal.style.display = "none";
             }
         }
-        
+
         function subtraction(val) {
             var t = 0;
             val = parseInt(val);
-            
+
             t = chargeYes.dataset.total.substring(2, chargeYes.dataset.total.length);
-            
+
             t = (t == null || t == undefined || t == "") ? 0 : t;
-            
+
             t = (parseInt(val) - parseInt(t));
-            
+
             exchange.innerHTML = 'Cambio: $ ' + t;
         }
-        
+
     </script>
 </body>
 

@@ -10,7 +10,7 @@ function connection($db_config) {
 }
 
 function noOrder($con) {
-    $result = $con->query("SELECT chek FROM sell GROUP BY chek");
+    $result = $con->query("SELECT chek FROM sell WHERE charged = '0' GROUP BY chek");
     $result->execute();
     return $result->fetchAll();
 }
